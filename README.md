@@ -1,6 +1,6 @@
 ### Steps To Run
 
-1. The following packages are required to run (some are built into Python):
+1. The following package imports are required to run:
 
 	* from nilearn import image, datasets
 	* from scipy.ndimage import gaussian_filter, zoom
@@ -8,21 +8,18 @@
 	* from torch.utils import data
 	* from torch.utils.tensorboard import SummaryWriter
 	* from tqdm import tqdm
-	* import io
-	* import math
 	* import matplotlib.pyplot as plt
-	* import multiprocessing as mp
 	* import nibabel as nib
 	* import numpy as np
-	* import os
 	* import pandas as pd
-	* import random
 	* import seaborn as sns
 	* import torch
 	* import torch.nn as nn
 	* import torch.nn.functional as F
 	* import torch.optim as optim
-	* import zipfile
+
+Use this command to `pip install` all of the base packages at once:
+`pip install nilearn scipy scikit-learn torch tensorboard tqdm matplotlib nibabel numpy pandas seaborn`
 
 2. Download the repository and keep the Python files in the same folder.
 
