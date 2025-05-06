@@ -30,13 +30,15 @@ Use this command to `pip install` all of the base packages at once:
 5. Use `main.py` to run the ML pipeline.
 	* In `if __name__ == 'main':` at the bottom, you a free to change the variables at the top of the section. Specifically, and of the following may be altered:
 
-		* output_dir = 'results'
 		* batch_size = 4
 		* num_workers = 2
 		* widening_factor = 8
 		* use_age = True
 		* num_epochs = 10
 		* learning_rate = 0.001
+		* n_samples = 5
+
+Note: `n_samples` needs to match the number of samples that are generated for each group. For instance, we used 5, 20, and 300 which generated 15, 60, and 900 files respectively.
 
 ### Downloading The Data
 
