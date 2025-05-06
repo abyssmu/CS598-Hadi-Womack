@@ -19,6 +19,7 @@
 	* import torch.optim as optim
 
 Use this command to `pip install` all of the base packages at once:
+
 `pip install nilearn scipy scikit-learn torch tensorboard tqdm matplotlib nibabel numpy pandas seaborn`
 
 2. Download the repository and keep the Python files in the same folder.
