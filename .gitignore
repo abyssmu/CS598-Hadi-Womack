@@ -172,3 +172,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+processed_data_5/
+processed_data_20/
+processed_data_100/
+processed_data_300/
+
+*.pth
