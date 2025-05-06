@@ -40,6 +40,8 @@ Use this command to `pip install` all of the base packages at once:
 
 ### Downloading The Data
 
+Registration through the Image and Data Archive (IDA) are needed to download any of the relevant data. This can be done at the [IDA website](https://ida.loni.usc.edu/collaboration/access/appLicense.jsp;jsessionid=B61EA74690BFB07100C07269CCC5B8F8).
+
 1. Click on "Search \& Download" at the top of the home page and then click on "Advanced Image Search".
 2. In the "PROJECT/PHASE" section, ensure that only ADNI is selected.
 3. In the "SUBJECT" section, check "MCI".
