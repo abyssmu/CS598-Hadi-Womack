@@ -75,7 +75,7 @@ if __name__ == "__main__":
 	use_age = True
 	num_epochs = 10
 	learning_rate = 0.001
-	group_samples = 20
+	group_samples = 300
 	output_dir = f'results_epochs-{num_epochs}_num_samples-{group_samples}'
 	data_dir = f'{DATA_DIR}_{group_samples}/'
 
