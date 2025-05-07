@@ -1,0 +1,4 @@
+sample_id,patient_id,true_label,predicted_label,probabilities,age,correct,prediction_path,gradcam_path
+0,067_S_1185,AD,MCI,"{'CN': 2.523870898585301e-05, 'MCI': 0.9982580542564392, 'AD': 0.0017167282057926059}",63.0,False,results_epochs-10_num_samples-5\inference\pred_0_067_S_1185.png,results_epochs-10_num_samples-5\inference\gradcam_0_067_S_1185.png
+1,011_S_0241,MCI,CN,"{'CN': 0.891391396522522, 'MCI': 0.02523873746395111, 'AD': 0.08336987346410751}",86.0,False,results_epochs-10_num_samples-5\inference\pred_1_011_S_0241.png,results_epochs-10_num_samples-5\inference\gradcam_1_011_S_0241.png
+2,036_S_1023,CN,AD,"{'CN': 0.0033225486986339092, 'MCI': 5.9589019656414166e-05, 'AD': 0.99661785364151}",80.0,False,results_epochs-10_num_samples-5\inference\pred_2_036_S_1023.png,results_epochs-10_num_samples-5\inference\gradcam_2_036_S_1023.png

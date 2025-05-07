@@ -400,10 +400,12 @@ def process_all_groups(n_samples=None, output_dir='processed_data', n_processes=
 	return [ad_zip, cn_zip, mci_zip]
 
 if __name__ == "__main__":
-	import argparse
+	# Set the number of samples and processes
+	n_samples = 300  # Adjust as needed
+	n_processes = None  # Use all available CPU cores
 	
 	# Create output directory
-	output_dir = 'processed_data'
+	output_dir = f'processed_data_{n_samples}'
 	os.makedirs(output_dir, exist_ok=True)
 	
 	# Clear previous output files
@@ -411,10 +413,6 @@ if __name__ == "__main__":
 		file_path = os.path.join(output_dir, filename)
 		if os.path.isfile(file_path):
 			os.remove(file_path)
-	
-	# Set the number of samples and processes
-	n_samples = 300  # Adjust as needed
-	n_processes = None  # Use all available CPU cores
 	
 	print(f"Starting processing with {n_samples} samples per group and {n_processes if n_processes else 'all available'} processes")
 	

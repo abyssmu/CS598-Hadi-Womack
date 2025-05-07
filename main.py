@@ -1,11 +1,11 @@
 from pipeline import AlzheimerPipeline
-from dataset import create_data_loaders, DATA_DIR
+from dataset import create_data_loaders
 from model import AlzheimerCNN
 
 import os
 import torch
 
-def create_pipeline(model_path=None, data_dir=DATA_DIR, output_dir='results',
+def create_pipeline(model_path=None, data_dir=None, output_dir='results',
 				   batch_size=4, num_workers=4, device=None, widening_factor=8, use_age=True):
 	"""
 	Create a pipeline for testing and visualizing the Alzheimer's CNN model.
@@ -14,7 +14,7 @@ def create_pipeline(model_path=None, data_dir=DATA_DIR, output_dir='results',
 	-----------
 	model_path : str or None
 		Path to the model checkpoint file
-	data_dir : str
+	data_dir : str or None
 		Directory containing the processed data files
 	output_dir : str
 		Directory to save results
@@ -67,17 +67,21 @@ def create_pipeline(model_path=None, data_dir=DATA_DIR, output_dir='results',
 	return pipeline
 
 if __name__ == "__main__":
-	output_dir = 'results'
+	DATA_DIR = 'processed_data'
+
 	batch_size = 4
 	num_workers = 2
 	widening_factor = 8
 	use_age = True
 	num_epochs = 10
 	learning_rate = 0.001
+	group_samples = 20
+	output_dir = f'results_epochs-{num_epochs}_num_samples-{group_samples}'
+	data_dir = f'{DATA_DIR}_{group_samples}/'
 
 	# Create pipeline
 	pipeline = create_pipeline(
-		data_dir=DATA_DIR,
+		data_dir=data_dir,
 		output_dir=output_dir,
 		batch_size=batch_size,
 		num_workers=num_workers,

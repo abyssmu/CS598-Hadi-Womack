@@ -836,7 +836,7 @@ class AlzheimerPipeline:
             plt.savefig(save_path, dpi=300)
         
         plt.tight_layout()
-        plt.show()
+        #plt.show()
         
         return prediction
     
@@ -1003,7 +1003,7 @@ class AlzheimerPipeline:
             plt.savefig(save_path, dpi=300)
         
         plt.tight_layout()
-        plt.show()
+        #plt.show()
         
         return {
             'gradcam': cam_resized,
@@ -1080,7 +1080,7 @@ class AlzheimerPipeline:
             
             # Generate Grad-CAM
             gradcam_save_path = os.path.join(output_dir, f"gradcam_{i}_{patient_id}.png")
-            gradcam = self.generate_gradcam(scan, target_class=None, age=age, save_path=gradcam_save_path)
+            #gradcam = self.generate_gradcam(scan, target_class=None, age=age, save_path=gradcam_save_path)
             
             # Store results
             result = {

@@ -5,15 +5,13 @@ import numpy as np
 import torch
 from torch.utils import data
 
-DATA_DIR = 'processed_data_20/'
-
 class AlzheimerDataset(data.Dataset):
     """
     Dataset for loading Alzheimer's disease MRI scans from preprocessed zip files.
     The dataset handles loading scans from multiple zip files, where each file contains
     numpy arrays for brain scans along with metadata including patient group, ID, and age.
     """
-    def __init__(self, data_dir=DATA_DIR, transform=None):
+    def __init__(self, data_dir, transform=None):
         """
         Initialize the dataset.
         
@@ -147,7 +145,7 @@ class AlzheimerDataset(data.Dataset):
         
         return result
 
-def create_data_loaders(data_dir=DATA_DIR, batch_size=4, num_workers=4, 
+def create_data_loaders(data_dir, batch_size=4, num_workers=4, 
                        train_val_test_split=(0.7, 0.15, 0.15), transform=None, 
                        shuffle=True, random_seed=42):
     """
