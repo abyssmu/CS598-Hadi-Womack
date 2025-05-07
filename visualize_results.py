@@ -7,6 +7,7 @@ from scipy import stats
 import torch
 from model import AlzheimerCNN
 from baselines import AlexNet3D, ResNet3D, ResNet3D50
+from sklearn.metrics import roc_curve, auc
 
 def count_parameters(model):
     """
@@ -285,9 +286,162 @@ def create_radar_chart(info_df, performance_df, output_dir):
     plt.savefig(os.path.join(output_dir, 'model_radar_chart.png'), dpi=300)
     plt.close()
 
+def load_roc_curve_data(base_dir, models):
+    """
+    Load ROC curve data from model directories.
+    
+    Parameters:
+    -----------
+    base_dir : str
+        Base directory containing model results
+    models : list
+        List of model names
+    
+    Returns:
+    --------
+    dict
+        Dictionary containing ROC curve data for each model and class
+    """
+    class_names = ["CN", "MCI", "AD"]
+    roc_data = {class_name: {} for class_name in class_names}
+    
+    for model_name in models:
+        # Path to model directory
+        model_dir = os.path.join(base_dir, model_name, model_name)
+        
+        # Path to ROC curve data
+        roc_path = os.path.join(model_dir, "roc_curves_data.csv")
+        
+        # Check if ROC curve data exists
+        if not os.path.exists(roc_path):
+            print(f"ROC curve data not found for {model_name}")
+            continue
+        
+        # Load ROC curve data
+        try:
+            roc_df = pd.read_csv(roc_path)
+            
+            # Extract data for each class
+            for class_name in class_names:
+                class_data = roc_df[roc_df['class'] == class_name]
+                
+                if len(class_data) > 0:
+                    roc_data[class_name][model_name] = {
+                        'fpr': class_data['fpr'].values,
+                        'tpr': class_data['tpr'].values,
+                        'auc': class_data['auc'].values[0]
+                    }
+        except Exception as e:
+            print(f"Error loading ROC curve data for {model_name}: {e}")
+    
+    return roc_data
+
+def plot_roc_curves_comparison(roc_data, output_dir):
+    """
+    Plot ROC curves comparison for each class.
+    
+    Parameters:
+    -----------
+    roc_data : dict
+        Dictionary containing ROC curve data for each model and class
+    output_dir : str
+        Directory to save visualizations
+    """
+    # Create output directory
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Define colors for models
+    models = set()
+    for class_data in roc_data.values():
+        models.update(class_data.keys())
+    
+    colors = plt.cm.tab10(np.linspace(0, 1, len(models)))
+    color_map = {model: colors[i] for i, model in enumerate(sorted(models))}
+    
+    # Plot ROC curves for each class
+    for class_name, class_data in roc_data.items():
+        if not class_data:  # Skip if no data for this class
+            continue
+        
+        plt.figure(figsize=(10, 8))
+        
+        # Plot random guessing line
+        plt.plot([0, 1], [0, 1], 'k--', lw=2, label='Random Guessing')
+        
+        # Plot ROC curve for each model
+        for model_name, model_data in class_data.items():
+            fpr = model_data['fpr']
+            tpr = model_data['tpr']
+            auc_score = model_data['auc']
+            
+            plt.plot(fpr, tpr, lw=2, label=f'{model_name} (AUC = {auc_score:.3f})',
+                    color=color_map[model_name])
+        
+        plt.xlabel('False Positive Rate')
+        plt.ylabel('True Positive Rate')
+        plt.title(f'ROC Curves Comparison - {class_name} Class')
+        plt.legend(loc='lower right')
+        
+        # Set axis limits
+        plt.xlim([0.0, 1.0])
+        plt.ylim([0.0, 1.05])
+        
+        # Add grid
+        plt.grid(True, linestyle='--', alpha=0.7)
+        
+        # Save figure
+        plt.tight_layout()
+        plt.savefig(os.path.join(output_dir, f'roc_comparison_{class_name}.png'), dpi=300)
+        plt.close()
+    
+    # Plot average ROC AUC bar chart
+    plt.figure(figsize=(10, 6))
+    
+    # Collect average AUC for each model
+    avg_auc_data = []
+    
+    for model_name in models:
+        model_aucs = []
+        
+        for class_name, class_data in roc_data.items():
+            if model_name in class_data:
+                model_aucs.append(class_data[model_name]['auc'])
+        
+        if model_aucs:
+            avg_auc_data.append({
+                'Model': model_name,
+                'Average AUC': np.mean(model_aucs)
+            })
+    
+    if avg_auc_data:
+        avg_auc_df = pd.DataFrame(avg_auc_data)
+        avg_auc_df = avg_auc_df.sort_values('Average AUC', ascending=False)
+        
+        # Plot bar chart
+        bars = plt.bar(avg_auc_df['Model'], avg_auc_df['Average AUC'], 
+                      color=[color_map[model] for model in avg_auc_df['Model']])
+        
+        # Add AUC value above bars
+        for bar in bars:
+            height = bar.get_height()
+            plt.text(bar.get_x() + bar.get_width()/2., height + 0.01,
+                    f'{height:.3f}', ha='center', va='bottom')
+        
+        plt.title('Average ROC AUC Across Classes by Model')
+        plt.xlabel('Model')
+        plt.ylabel('Average AUC')
+        plt.ylim([0.5, 1.05])  # AUC is typically between 0.5 and 1.0
+        plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+        plt.xticks(rotation=45, ha='right')
+        
+        plt.tight_layout()
+        plt.savefig(os.path.join(output_dir, 'average_auc_comparison.png'), dpi=300)
+        plt.close()
+
 def main():
     # Directory containing model results
-    results_dir = 'comparison_results_epochs-10_num_samples-300/comparison_analysis'
+    base_dir = 'widening_test_comparison_results_epochs-10_num_samples-300'
+    results_dir = os.path.join(base_dir, "comparison_analysis")
     summary_file = os.path.join(results_dir, "model_comparison_summary.csv")
     
     if not os.path.exists(summary_file):
@@ -299,6 +453,17 @@ def main():
     
     # Load performance data
     performance_df = pd.read_csv(summary_file)
+    
+    # Get model names from the summary file
+    models = performance_df['Model'].tolist()
+    
+    # Load ROC curve data for all models
+    print("Loading ROC curve data...")
+    roc_data = load_roc_curve_data(base_dir, models)
+    
+    # Plot ROC curves comparison
+    print("Plotting ROC curves comparison...")
+    plot_roc_curves_comparison(roc_data, output_dir)
     
     # Get model architecture information
     print("Analyzing model architectures...")

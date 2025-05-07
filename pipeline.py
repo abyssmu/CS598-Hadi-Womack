@@ -428,6 +428,9 @@ class AlzheimerPipeline:
         # Create figure
         plt.figure(figsize=(8, 6))
         
+        # Store ROC curve data for later comparison
+        roc_data = []
+        
         # Plot ROC curves for each class
         colors = ['blue', 'red', 'green']
         for i, (class_name, color) in enumerate(zip(self.class_names, colors)):
@@ -435,10 +438,23 @@ class AlzheimerPipeline:
             fpr, tpr, _ = roc_curve((y_true == i).astype(int), y_score[:, i])
             auc_score = self.metrics['roc_auc'][class_name]
             
+            # Store ROC curve data
+            for j in range(len(fpr)):
+                roc_data.append({
+                    'class': class_name,
+                    'fpr': fpr[j],
+                    'tpr': tpr[j],
+                    'auc': auc_score
+                })
+            
             plt.plot(
                 fpr, tpr, color=color, lw=2,
                 label=f'{class_name} (AUC = {auc_score:.3f})'
             )
+        
+        # Save ROC curve data to CSV
+        roc_df = pd.DataFrame(roc_data)
+        roc_df.to_csv(os.path.join(self.output_dir, "roc_curves_data.csv"), index=False)
         
         # Plot random guessing line
         plt.plot([0, 1], [0, 1], 'k--', lw=2)

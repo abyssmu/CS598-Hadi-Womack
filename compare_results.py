@@ -628,7 +628,7 @@ def main():
         base_dir = sys.argv[1]
     else:
         # Default directory
-        base_dir = 'comparison_results_epochs-10_num_samples-300'
+        base_dir = 'widening_test_comparison_results_epochs-10_num_samples-300'
     
     # Check if base directory exists
     if not os.path.exists(base_dir):

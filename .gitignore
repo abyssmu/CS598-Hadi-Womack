@@ -179,3 +179,19 @@ processed_data_100/
 processed_data_300/
 
 *.pth
+
+comparison_results_epochs-10_num_samples-300/alexnet3d/alexnet3d/tensorboard/
+comparison_results_epochs-10_num_samples-300/alzheimer_cnn/alzheimer_cnn/tensorboard/
+comparison_results_epochs-10_num_samples-300/resnet3d/resnet3d/tensorboard/
+
+age_test_comparison_results_epochs-10_num_samples-300/alexnet3d/alexnet3d/tensorboard/
+age_test_comparison_results_epochs-10_num_samples-300/alzheimer_cnn/alzheimer_cnn/tensorboard/
+age_test_comparison_results_epochs-10_num_samples-300/resnet3d/resnet3d/tensorboard/
+
+lr_test_comparison_results_epochs-10_num_samples-300/alexnet3d/alexnet3d/tensorboard/
+lr_test_comparison_results_epochs-10_num_samples-300/alzheimer_cnn/alzheimer_cnn/tensorboard/
+lr_test_comparison_results_epochs-10_num_samples-300/resnet3d/resnet3d/tensorboard/
+
+widening_test_comparison_results_epochs-10_num_samples-300/alexnet3d/alexnet3d/tensorboard/
+widening_test_comparison_results_epochs-10_num_samples-300/alzheimer_cnn/alzheimer_cnn/tensorboard/
+widening_test_comparison_results_epochs-10_num_samples-300/resnet3d/resnet3d/tensorboard/

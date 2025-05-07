@@ -1,0 +1,5 @@
+Model,Parameters,Layers,Conv Layers,FC Layers,Has Age Encoding
+alzheimer_cnn,25001795,28,4,4,True
+alexnet3d,21416771,28,5,5,True
+resnet3d,34467779,74,20,4,True
+resnet3d50,64769987,122,36,4,True

@@ -1,0 +1,10 @@
+Model,Class,AUC
+alexnet3d,CN,0.5
+alexnet3d,MCI,0.5
+alexnet3d,AD,0.5
+alzheimer_cnn,CN,0.5560344827586207
+alzheimer_cnn,MCI,0.5673076923076923
+alzheimer_cnn,AD,0.6379310344827587
+resnet3d,CN,0.5366379310344828
+resnet3d,MCI,0.5048076923076923
+resnet3d,AD,0.4741379310344827

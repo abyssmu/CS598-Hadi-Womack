@@ -96,14 +96,14 @@ def main():
     widening_factor = 8
     use_age = True
     num_epochs = 10
-    learning_rate = 0.001
+    learning_rate = 0.005
     group_samples = 300
     
     # Models to compare
     models = ['alzheimer_cnn', 'alexnet3d', 'resnet3d']
     
     # Base output directory
-    base_output_dir = f'comparison_results_epochs-{num_epochs}_num_samples-{group_samples}'
+    base_output_dir = f'lr_test_comparison_results_epochs-{num_epochs}_num_samples-{group_samples}'
     data_dir = f'{DATA_DIR}_{group_samples}/'
     
     # Run comparison for each model

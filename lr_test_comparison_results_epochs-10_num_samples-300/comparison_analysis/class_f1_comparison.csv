@@ -1,0 +1,10 @@
+Model,Class,F1 Score
+alexnet3d,CN,0.6
+alexnet3d,MCI,0.4242424242424242
+alexnet3d,AD,0.0
+alzheimer_cnn,CN,0.5
+alzheimer_cnn,MCI,0.1176470588235294
+alzheimer_cnn,AD,0.1904761904761904
+resnet3d,CN,0.5614035087719298
+resnet3d,MCI,0.0
+resnet3d,AD,0.3

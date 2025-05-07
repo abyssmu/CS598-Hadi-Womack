@@ -1,0 +1,10 @@
+Model,Class,Precision
+alexnet3d,CN,0.5
+alexnet3d,MCI,0.35
+alexnet3d,AD,0.0
+alzheimer_cnn,CN,0.3611111111111111
+alzheimer_cnn,MCI,0.25
+alzheimer_cnn,AD,0.4
+resnet3d,CN,0.3902439024390244
+resnet3d,MCI,0.0
+resnet3d,AD,0.75
