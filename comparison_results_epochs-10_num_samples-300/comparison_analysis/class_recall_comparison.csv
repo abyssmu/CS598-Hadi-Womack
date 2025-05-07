@@ -1,0 +1,10 @@
+Model,Class,Recall
+alexnet3d,CN,0.75
+alexnet3d,MCI,0.3846153846153846
+alexnet3d,AD,0.4375
+alzheimer_cnn,CN,0.25
+alzheimer_cnn,MCI,0.0769230769230769
+alzheimer_cnn,AD,0.8125
+resnet3d,CN,0.5625
+resnet3d,MCI,0.2307692307692307
+resnet3d,AD,0.5
