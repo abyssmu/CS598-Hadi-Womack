@@ -41,6 +41,8 @@ Use this command to `pip install` all of the base packages at once:
 
 Note: `n_samples` needs to match the number of samples that are generated for each group. For instance, we used 5, 20, and 300 which generated 15, 60, and 900 files respectively.
 
+To run the analysis between the three models, run `main` in `compare_results.py` to generate data files, and then `main` in `visualize_results.py` to create visualizations of the data.
+
 ### Downloading The Data
 
 Registration through the Image and Data Archive (IDA) are needed to download any of the relevant data. This can be done at the [IDA website](https://ida.loni.usc.edu/collaboration/access/appLicense.jsp;jsessionid=B61EA74690BFB07100C07269CCC5B8F8). After this has been done, you can use the following instructions from the [IDA homepage](https://ida.loni.usc.edu/login.jsp).

@@ -195,3 +195,8 @@ lr_test_comparison_results_epochs-10_num_samples-300/resnet3d/resnet3d/tensorboa
 widening_test_comparison_results_epochs-10_num_samples-300/alexnet3d/alexnet3d/tensorboard/
 widening_test_comparison_results_epochs-10_num_samples-300/alzheimer_cnn/alzheimer_cnn/tensorboard/
 widening_test_comparison_results_epochs-10_num_samples-300/resnet3d/resnet3d/tensorboard/
+
+results_epochs-10_num_samples-5/tensorboard/
+results_epochs-10_num_samples-20/tensorboard/
+results_epochs-10_num_samples-100/tensorboard/
+results_epochs-10_num_samples-300/tensorboard/
