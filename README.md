@@ -37,7 +37,7 @@ Use this command to `pip install` all of the base packages at once:
 		* use_age = True
 		* num_epochs = 10
 		* learning_rate = 0.001
-		* n_samples = 5
+		* group_samples = 5
 
 Note: `n_samples` needs to match the number of samples that are generated for each group. For instance, we used 5, 20, and 300 which generated 15, 60, and 900 files respectively.
 
